@@ -9,8 +9,6 @@ for _ in range(n):
     arr.append((a, b))
 arr = sorted(arr, key=lambda x: x[0])
 
-
-
 dp = [0]*n
 for i in range(n):
     a, b = arr[i]
