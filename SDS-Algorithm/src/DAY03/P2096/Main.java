@@ -1,4 +1,4 @@
-package P2096;
+package DAY03.P2096;
 
 import java.io.BufferedReader;
 import java.io.IOException;

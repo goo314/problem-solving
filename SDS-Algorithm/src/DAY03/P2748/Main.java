@@ -1,4 +1,4 @@
-package P2748;
+package DAY03.P2748;
 
 import java.io.BufferedReader;
 import java.io.IOException;

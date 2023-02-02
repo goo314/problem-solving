@@ -1,3 +1,5 @@
+package DAY03;
+
 public class IndexedTree {
     static int N ,M, K;
     static long[] nums = {1, 2, 3, 4, 5};

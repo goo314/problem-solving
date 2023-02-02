@@ -1,4 +1,4 @@
-package P2042;
+package DAY03.P2042;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package P11279;
+package DAY03.P11279;
 
 import java.io.BufferedReader;
 import java.io.IOException;
