@@ -1,4 +1,4 @@
-package P1806;
+package DAY02.P1806;
 
 import java.util.Scanner;
 

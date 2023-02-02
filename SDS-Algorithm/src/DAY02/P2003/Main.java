@@ -1,4 +1,4 @@
-package P2003;
+package DAY02.P2003;
 
 import java.io.BufferedReader;
 import java.io.IOException;

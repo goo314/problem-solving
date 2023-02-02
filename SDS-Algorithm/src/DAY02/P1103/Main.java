@@ -1,4 +1,4 @@
-package P1103;
+package DAY02.P1103;
 
 import java.util.Scanner;
 
