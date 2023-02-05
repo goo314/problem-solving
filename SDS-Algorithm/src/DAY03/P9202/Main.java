@@ -1,6 +1,6 @@
 // TODO: input and print result
 
-package DAY04.P9202;
+package DAY03.P9202;
 
 import java.io.BufferedReader;
 import java.io.IOException;

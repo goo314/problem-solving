@@ -1,4 +1,4 @@
-package DAY02.P1713;
+package DAY01.P1713;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
