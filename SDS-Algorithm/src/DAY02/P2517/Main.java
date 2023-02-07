@@ -1,18 +1,18 @@
 // TODO: sort people by rank and use Indexed tree
-package DAY01.P2517;
+package DAY02.P2517;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 public class Main {
     static int N;
     static int s;
     static int[] tree;
-    static PriorityQueue<Person> pq = new PriorityQueue<>(Comparator.comparingLong(Person::getSkill));
+    static Runner[] runners;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
@@ -22,18 +22,29 @@ public class Main {
         }
 
         tree = new int[2*s];
-        for (int rank = 1; rank <= N; rank++) {
+        runners = new Runner[N];
+
+        for (int i = 0; i < N; i++) {
             long skill = Long.parseLong(br.readLine());
-            pq.add(new Person(rank, skill));
+            runners[i] = new Runner(i+1, skill, 0);
+        }
 
-            while (pq.isEmpty() == false && pq.peek().skill <= skill) {
-                Person p = pq.poll();
-                System.out.print(p.skill+" ");
-                update(1, s, 1, p.rank, 1);
-            }
-            System.out.println();
+        // skill 오름차순으로 정렬
+        Arrays.sort(runners, Comparator.comparingLong(Runner::getSkill));
 
-//            System.out.println(rank +" " + skill + " " + query(1, s, 1, 1, rank-1));
+        // 앞에 있는 사람 수 계산
+        for (int i = 0; i < N; i++) {
+            Runner runner = runners[i];
+            update(1, s, 1, runner.rank, 1);
+            runner.countPrev = query(1, s, 1, 0, runner.rank-1);
+        }
+
+        // rank 오름차순으로 정렬
+        Arrays.sort(runners, Comparator.comparingInt(Runner::getRank));
+
+        for (int i = 0; i < N; i++) {
+            Runner runner = runners[i];
+            System.out.println(runner.rank - runner.countPrev);
         }
 
     }
@@ -69,13 +80,15 @@ public class Main {
 
 }
 
-class Person {
+class Runner {
     int rank;
     long skill;
+    int countPrev;
 
-    public Person(int rank, long skill) {
+    public Runner(int rank, long skill, int countPrev) {
         this.rank = rank;
         this.skill = skill;
+        this.countPrev = countPrev;
     }
 
     public int getRank() {
@@ -88,6 +101,10 @@ class Person {
 
     @Override
     public String toString() {
-        return "{" + rank + ", " + skill + '}';
+        return "{" +
+                "rank=" + rank +
+                ", skill=" + skill +
+                ", countPrev=" + countPrev +
+                '}';
     }
 }
