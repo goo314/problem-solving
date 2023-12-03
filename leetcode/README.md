@@ -11,6 +11,31 @@
 # copy and paste the submitted code in $probnumber.py
 ```
 
+## COMMIT CONVENTION
+
+```markdown
+[leetcode] <description>: <name>
+
+- description : short summary of studying status
+- name : function name in solution class or module names
+
+# e.g. to upload modules
+
+[leetcode] add module: module1, module2 and module3
+
+# e.g. succeeded to solve problem
+
+[leetcode] solve #: my function
+
+# e.g. failed to solve problem
+
+[leetcode] failed to solve #: my function2
+
+# e.g. update README.md
+
+[leetcode] update readme: add my description
+```
+
 ## GOALS
 
 ### 2023
