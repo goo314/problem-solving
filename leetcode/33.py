@@ -5,35 +5,40 @@ Algorithm :
 Level :
     Medium
 Status :
-    Failed
+    Accepted
 
-Thu Nov 30 23:06:16 PST 2023
+Sun Dec  3 18:50:07 PST 2023
 """
 
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         result = -1
 
-        start, end = 0, len(nums)-1
-        # Can't find pivot when start = end
+        n = len(nums)
+        start, end = 0, n-1
         while start <= end:
-            mid = (start+end)//2
-            if not (nums[start] <= nums[mid]):
-                end = mid - 1
-            if not (nums[mid] <= nums[end]):
-                start = mid + 1
-            else:
-                break
-        
-        start, end = start-len(nums), start-1
-        while start <= end:
-            mid = (start+end)//2
+            mid = (start+end) // 2
             if nums[mid] == target:
-                result = mid % len(nums)
+                result = mid
                 break
-            elif target < nums[mid]:
-                end = mid - 1
+            
+            # A B C
+            if nums[start] < nums[mid] < nums[end]:
+                if target < nums[mid]:
+                    end = mid - 1
+                else:
+                    start = mid + 1
+            # C A B
+            elif nums[mid] < nums[end] < nums[start]:
+                if nums[mid] < target <= nums[end]:
+                    start = mid + 1
+                else:
+                    end = mid - 1
+            # B C A
             else:
-                start = mid + 1
+                if nums[start] <= target < nums[mid]:
+                    end = mid - 1
+                else:
+                    start = mid + 1
 
         return result
