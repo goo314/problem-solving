@@ -1,4 +1,4 @@
-"""LongestPanlindrome
+"""LeetCode
 
 Algorithm : 
     Binary Search

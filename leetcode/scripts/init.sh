@@ -4,7 +4,7 @@ read -p 'Algorithm: ' algorithm
 read -p 'Level(Easy, Medium, Hard): ' level
 read -p 'Status(Accepted, Failed): ' status
 
-echo "\"\"\"LongestPanlindrome
+echo "\"\"\"LeetCode
 
 Algorithm : 
     $(echo $algorithm)
