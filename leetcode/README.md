@@ -38,6 +38,12 @@
 
 ## GOALS
 
+### 2024
+
+Solve daily problem every weekdays.
+- It's okay to be failed and see the solution.
+- Check others' solution to get broad approach.
+
 ### 2023
 
 👑 Watch video about coding test for 2 weeks :
