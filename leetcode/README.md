@@ -38,6 +38,13 @@
 
 ## GOALS
 
+### 2025
+🎯 Read the book named **Algorithm Cheet Sheet for Coding Interview**
+
+🎯 Try harder quizes
+
+🎯 Do not give up
+
 ### 2024
 
 Solve daily problem every weekdays.
