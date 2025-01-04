@@ -21,4 +21,19 @@ class Solution:
         
         result = dp[n]
         return result
-        
+    
+    """Another Answer (with Recursion)
+    def fib(self, n: int) -> int:
+        if n == 0:
+            return 0
+        dp = [0] * (n+1)
+        return self.fibo(dp, n)
+
+    def fibo(self, dp, n):
+        if n == 1 or n == 2:
+            return 1
+        if dp[n] != 0:
+            return dp[n]
+        dp[n] = self.fibo(dp, n-1) + self.fibo(dp, n-2)
+        return dp[n]
+    """
