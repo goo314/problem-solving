@@ -19,9 +19,9 @@
 - description : short summary of studying status
 - name : function name in solution class or module names
 
-# e.g. to upload modules
+# e.g. to upload algorithms
 
-[leetcode] add module: module1, module2 and module3
+[leetcode] add algorithm: algorithm1, algorithm2 and algorithm3
 
 # e.g. succeeded to solve problem
 
