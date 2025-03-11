@@ -136,7 +136,7 @@ def bfs_fn(): # TODO: change to Graph ver.
 
 
 def dfs_fn(): # TODO: change to Graph ver.
-    """BFS
+    """DFS
               1
         2           3
     4       5   6       7
@@ -237,20 +237,20 @@ def disjointset_fn():
     def find_parent(x):
         if parent[x] != x:
             parent[x] = find_parent(parent[x])
-        return x
-    def union_set(x, y):
+        return parent[x]
+    def union(x, y):
         x, y = find_parent(x), find_parent(y)
         if x < y:
             parent[y] = x
         else:
             parent[x] = y
-    union_set(0, 1)
-    union_set(2, 3)
-    union_set(2, 4)
+    union(0, 1)
+    union(2, 3)
+    union(2, 4)
     print('parent:', parent)
 
 
-def kruskal_fn(): # TODO: wrong code
+def kruskal_fn():
     """Kruskal
      0 -(1)-- 1
      | \      |
@@ -260,8 +260,21 @@ def kruskal_fn(): # TODO: wrong code
      |      \ |
      2 --(1)- 3
 
+    Description:
+        Build the minimum spanning tree (=minimum cost to connect all points)
+        모든 edge들을 순회하면서 cycle이 안 만들어지면 추가한다. 
+    
+    Explanation:
+     0 -(1)-- 1
+              |
+              |
+             (1)
+              |
+              |
+     2 --(1)- 3
+
     Prints:
-        5
+        3
     """
     parent = [i for i in range(4)]
     edges = [
@@ -275,21 +288,17 @@ def kruskal_fn(): # TODO: wrong code
     def find_parent(x):
         if parent[x] != x:
             parent[x] = find_parent(parent[x])
-        return x
-    def union_set(x, y):
-        x, y = find_parent(x), find_parent(y)
-        if x < y:
-            parent[y] = x
-        else:
-            parent[x] = y
+        return parent[x]
+    def union(x, y):
+        parent[find_parent(x)] = parent[find_parent(y)]
     
     edges.sort()
-    result = 0
+    ans = 0
     for w, u, v in edges:
         if find_parent(u) != find_parent(v):
-            union_set(u, v)
-            result += w
-    print(result)
+            union(u, v)
+            ans += w
+    print(ans)
 
 
 if __name__ == '__main__':    
