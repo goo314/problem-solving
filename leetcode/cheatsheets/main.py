@@ -263,6 +263,7 @@ def kruskal_fn():
     Description:
         Build the minimum spanning tree (=minimum cost to connect all points)
         모든 edge들을 순회하면서 cycle이 안 만들어지면 추가한다. 
+        "한 정점에서 모든 정점까지의 최단 경로를 구하는 알고리즘"
     
     Explanation:
      0 -(1)-- 1
@@ -301,6 +302,201 @@ def kruskal_fn():
     print(ans)
 
 
+def prim_fn():
+    """Prim
+     0 -(1)-- 1
+     | \      |
+     |  \     |
+    (2)  (3) (1)
+     |     \  |
+     |      \ |
+     2 --(1)- 3
+
+    Description:
+        Build the minimum spanning tree (=minimum cost to connect all points)
+        destination을 w와 같이 넣어서 작은 w로만 뻗어나간다. 
+    
+    Explanation:
+     0 -(1)-- 1
+              |
+              |
+             (1)
+              |
+              |
+     2 --(1)- 3
+
+    Prints:
+        3
+        parent: [0, 0, 3, 1]
+    """
+    edges = [
+        (1, 0, 1),
+        (2, 0, 2),
+        (3, 0, 3),
+        (1, 1, 3),
+        (1, 2, 3)
+    ]
+    parent = [i for i in range(4)]
+    visited = [False] * 4
+    dist = [1e9] * 4
+
+    from collections import defaultdict
+    graph = defaultdict(list)
+    for (w, u, v) in edges:
+        graph[u].append((v, w))
+        graph[v].append((u, w))
+    
+    start = 0
+
+    ans = 0
+    import heapq
+    pq = []
+    heapq.heappush(pq, (0, start))
+    dist[start] = 0
+
+    while pq:
+        d, v = heapq.heappop(pq)
+        if visited[v]:
+            continue
+        visited[v] = True
+        ans += d
+        for (u, w) in graph[v]:
+            if not visited[u] and w < dist[u]:
+                heapq.heappush(pq, (w, u))
+                parent[u] = v
+                dist[u] = w
+                
+    print(ans)
+    print('parent:', parent)
+
+
+def topological_fn(): # TODO: wrong
+    """Topological Algorithm
+    0 -(1)-> 1
+     \       |
+      \      |
+       (3)  (1)
+         \   |
+          \  v
+    2 <-(1)- 3
+
+    Prints:
+
+    """
+    edges = [
+        (0, 1),
+        (0, 2),
+        (0, 3),
+        (1, 3),
+        (2, 3)
+    ]
+
+    from collections import defaultdict
+    graph = defaultdict(list)
+
+    indegree = [0] * 4
+    for u, v in edges:
+        graph[u].append(v)
+        indegree[v] += 1
+
+    ans = []
+    
+    from collections import deque
+    q = deque()
+
+    for i in range(4):
+        if indegree[i] == 0:
+            q.append(i)
+
+    while q:
+        x = q.popleft()
+        ans.append(x)
+        for y in graph[x]:
+            indegree[y] -= 1
+            if indegree[y] == 0:
+                q.append(y)
+    print(ans)
+
+
+def indexed_tree_fn(): # TODO: unfinish
+    """Segmant Tree
+               10(= 3+7)
+        3(= 1+2)     7(= 3+4)
+    1       2     3     4
+
+    Description:
+
+
+    """
+    n = 4
+    arr = [1, 2, 3, 4]
+
+    s = 1
+    while s < n:
+        s *= 2
+    
+    tree = [0] * (2*s)
+
+    # # Top-Down
+    # def init(l, r, i):
+    #     if l == r:
+    #         tree[i] = arr[i-s]
+    #     else:
+    #         mid = (l+r)//2
+    #         init(l, mid, 2*i)
+    #         init(mid+1, r, 2*i+1)
+    #         tree[i] = tree[2*i] + tree[2*i+1]
+
+    # def query(l, r, i, query_l, query_r):
+    #     if query_r < l or r < query_l:
+    #         return 0
+    #     elif query_l <= l and r <= query_r:
+    #         return tree[i]
+    #     else:
+    #         mid = (l+r)//2
+    #         left = query(l, mid, 2*i, query_l, query_r)
+    #         right = query(mid+1, r, 2*i+1, query_l, query_r)
+    #         return left+right
+
+    # def update(l, r, i, target, diff):
+    #     if target < l or r < target:
+    #         return
+    #     tree[i] += diff
+    #     if l != r:
+    #         mid = (l+r)//2
+    #         update(l, mid, 2*i, target, diff)
+    #         update(mid+1, r, 2*i+1, target, diff)
+    
+    # init(1, 4, 1)
+    # print(tree)
+    # print(query(1, 4, 1, 1, 3))
+    # update(1, 4, 1, 3, -1)
+    # print(tree)
+    # print()
+    
+    # Bottom-Up
+    def init():
+        for i in range(2*s-1, 0, -1):
+            if s <= i:
+                tree[i] = arr[i-s]
+            else:
+                tree[i] = tree[2*i] + tree[2*i+1]
+    
+    def update(target, val):
+        i = s+target-1
+        tree[i] = val
+        while True:
+            i //= 2
+            if i < 1:
+                break
+            tree[i] = tree[2*i] + tree[2*i+1]
+
+    init()
+    print(tree)
+    update(2, 1)
+    print(tree)
+        
+
 if __name__ == '__main__':    
     import sys
     import argparse
@@ -314,7 +510,10 @@ if __name__ == '__main__':
         'dfs': dfs_fn,
         'dijkstra': dijkstra_fn,
         'disjointset': disjointset_fn,
-        'kruskal': kruskal_fn
+        'kruskal': kruskal_fn,
+        'topological': topological_fn,
+        'indexed_tree': indexed_tree_fn,
+        'prim': prim_fn 
     }
 
     parser = argparse.ArgumentParser(description=f"Choose a function to run: {', '.join(functions.keys())}")
