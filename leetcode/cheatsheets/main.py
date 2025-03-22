@@ -1,4 +1,4 @@
-"""
+"""Cheat Sheet for Problem Solving
 1. Arrays
 2. Stack
 3. Queue
@@ -370,7 +370,7 @@ def prim_fn():
     print('parent:', parent)
 
 
-def topological_fn(): # TODO: wrong
+def topological_fn():
     """Topological Algorithm
     0 -(1)-> 1
      \       |
@@ -385,10 +385,9 @@ def topological_fn(): # TODO: wrong
     """
     edges = [
         (0, 1),
-        (0, 2),
         (0, 3),
         (1, 3),
-        (2, 3)
+        (3, 2)
     ]
 
     from collections import defaultdict
@@ -469,8 +468,8 @@ def indexed_tree_fn(): # TODO: unfinish
     
     # init(1, 4, 1)
     # print(tree)
-    # print(query(1, 4, 1, 1, 3))
-    # update(1, 4, 1, 3, -1)
+    # print(query(1, s, 1, 1, 3))
+    # update(1, s, 1, 3, -1)
     # print(tree)
     # print()
     
