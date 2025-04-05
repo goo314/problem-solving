@@ -196,6 +196,9 @@ def dijkstra_fn():
           \  v
     2 <-(1)- 3
 
+    Description:
+        "한 정점에서 모든 정점까지의 최단 경로를 구하는 알고리즘"
+
     Prints:
         dist: [0, 1, 3, 2]
     """
@@ -263,7 +266,6 @@ def kruskal_fn():
     Description:
         Build the minimum spanning tree (=minimum cost to connect all points)
         모든 edge들을 순회하면서 cycle이 안 만들어지면 추가한다. 
-        "한 정점에서 모든 정점까지의 최단 경로를 구하는 알고리즘"
     
     Explanation:
      0 -(1)-- 1
