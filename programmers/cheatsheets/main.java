@@ -44,6 +44,8 @@ public int[] prefix_sum_fn(int[] arr) {
 // sb.delete(5, 7); // sb = "HelloWorld"
 // sb.reverse(); // sb = "dlroWolleH"
 // sb.toString(); 
+// sb.charAt(1);
+// sb.setCharAt(1, 'a');
 public String string_build_fn(char[] arr) {
     StringBuilder sb = new StringBuilder();
     for (char c: arr) {
