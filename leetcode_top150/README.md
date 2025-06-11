@@ -6,9 +6,9 @@ Must-do List for Interview Prep
 
 ```bash
 # create py file
-./script/init.sh $tag $probnumber_name
+./script/init.sh $tag $number_$name
 
-# copy and paste the submitted code in $tag/$probnumber_name.py
+# copy and paste the submitted code in $tag/$number_$name.py
 ```
 
 ## GOALS
