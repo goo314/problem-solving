@@ -1,4 +1,0 @@
-url = "https://api.datadoghq.com/api/v1/query"
-POST with query_data
-
-=> fetches metrics data based on a specified query.
